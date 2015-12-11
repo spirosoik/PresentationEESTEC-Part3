@@ -1,4 +1,4 @@
-# Presentation for EESTEC - Part 2
+# Presentation for EESTEC - Part 3
 
 This repository was demonstrated for [Electrical Engineering Students' European Association - EESTEC](https://eestec.net/) at Patra's University. You can find
 the presentation [here](https://prezi.com/mt5pha9wvy5r/android-mobile-development/) 
