@@ -10,16 +10,20 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import com.eestecapp.R;
+import com.eestecapp.event.SongsListEvent;
 import com.eestecapp.model.SongEntity;
-import com.eestecapp.task.SongListTask;
-import com.eestecapp.ui.songshow.SongShowActivity;
+import com.eestecapp.service.ItunesServiceImpl;
 import com.eestecapp.ui.songslist.adapter.SongsAdapter;
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
+import com.squareup.otto.ThreadEnforcer;
 
 public class SongsFragment extends Fragment implements AdapterView.OnItemClickListener {
 
   private SongsAdapter songsAdapter;
   private ListView lvSongs;
   private SongsListener songsListener;
+  private Bus bus = new Bus(ThreadEnforcer.MAIN);
 
   interface SongsListener {
     void onSongSelected(SongEntity songEntity);
@@ -58,16 +62,28 @@ public class SongsFragment extends Fragment implements AdapterView.OnItemClickLi
     songsAdapter = new SongsAdapter(getActivity(), new SongEntity[]{});
     this.lvSongs.setAdapter(songsAdapter);
 
-    SongListTask songListTask = new SongListTask(this);
-    songListTask.execute("dream theater");
+    ItunesServiceImpl itunesService = new ItunesServiceImpl(bus);
+    itunesService.getSongsByTerm("dream theater");
   }
 
-  /**
-   * Fills the list with data
-   * @param songs a list of {@link SongEntity}
-   */
-  public void showListSongs(SongEntity[] songs) {
-    songsAdapter.setSongsList(songs);
+  @Override
+  public void onStart() {
+    super.onStart();
+    bus.register(this);
+  }
+
+  @Override
+  public void onStop() {
+    super.onStop();
+    bus.unregister(this);
+  }
+
+  // Inside Fragment or Activity or wherever you need that
+  @Subscribe
+  public void onSongsListEvent(SongsListEvent event) {
+    if (event.getResult() != null) {
+      songsAdapter.setSongsList(event.getResult());
+    }
   }
 
   @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
