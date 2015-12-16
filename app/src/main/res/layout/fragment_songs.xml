@@ -5,10 +5,9 @@
     tools:context=".ui.songslist.SongsFragment"
     >
 
-  <ListView
+  <GridView
       android:id="@+id/lvSongs"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
+      style="@style/AppTheme.GridView"
       />
 
 </FrameLayout>

@@ -11,7 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import com.eestecapp.R;
 import com.eestecapp.model.SongEntity;
 import com.squareup.picasso.Picasso;
@@ -26,20 +29,17 @@ public class SongShowFragment extends Fragment implements View.OnClickListener {
   private SongEntity songEntity;
 
   // UI
-  private ImageView ivAvatar;
-  private TextView txtTrackName;
-  private TextView txtTrackArtistName;
-  private TextView tvGenreName;
-  private TextView tvListenLink;
-  private TextView tvLinkArtist;
-  private TextView tvTrackPrice;
+  @Bind(R.id.avatar) ImageView ivAvatar;
+  @Bind(R.id.trackName) TextView txtTrackName;
+  @Bind(R.id.trackArtistName)  TextView txtTrackArtistName;
+  @Bind(R.id.tvGenreName) TextView tvGenreName;
+  @Bind(R.id.tvListenLink) TextView tvListenLink;
+  @Bind(R.id.tvLinkArtist) TextView tvLinkArtist;
+  @Bind(R.id.tvTrackPrice) TextView tvTrackPrice;
+  @Bind(R.id.scrollSongShow) ScrollView scrollSongShow;
 
-  public static SongShowFragment newInstance(SongEntity songEntity) {
-    Bundle bundle = new Bundle();
-    bundle.putSerializable(ARG_SONG, songEntity);
-    SongShowFragment songShowFragment = new SongShowFragment();
-    songShowFragment.setArguments(bundle);
-    return songShowFragment;
+  public static SongShowFragment newInstance() {
+    return new SongShowFragment();
   }
 
   public SongShowFragment() {
@@ -51,11 +51,6 @@ public class SongShowFragment extends Fragment implements View.OnClickListener {
 
   @Override public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
-    Bundle arguments = getArguments();
-    if (arguments.containsKey(ARG_SONG)) {
-      this.songEntity = (SongEntity) arguments.get(ARG_SONG);
-    }
   }
 
   @Nullable @Override
@@ -64,14 +59,7 @@ public class SongShowFragment extends Fragment implements View.OnClickListener {
 
     View fragmentView = inflater.inflate(R.layout.fragment_song_show, container, false);
 
-    ivAvatar = (ImageView) fragmentView.findViewById(R.id.avatar);
-    txtTrackName = (TextView) fragmentView.findViewById(R.id.trackName);
-    txtTrackArtistName = (TextView) fragmentView.findViewById(R.id.trackArtistName);
-    tvGenreName  = (TextView) fragmentView.findViewById(R.id.tvGenreName);
-    tvTrackPrice  = (TextView) fragmentView.findViewById(R.id.tvTrackPrice);
-    tvGenreName  = (TextView) fragmentView.findViewById(R.id.tvGenreName);
-    tvListenLink  = (TextView) fragmentView.findViewById(R.id.tvListenLink);
-    tvLinkArtist  = (TextView) fragmentView.findViewById(R.id.tvLinkArtist);
+    ButterKnife.bind(this, fragmentView);
 
     tvListenLink.setOnClickListener(this);
     tvLinkArtist.setOnClickListener(this);
@@ -79,18 +67,20 @@ public class SongShowFragment extends Fragment implements View.OnClickListener {
     return fragmentView;
   }
 
+  @Override public void onResume() {
+    super.onResume();
+  }
+
+  @Override public void onDestroyView() {
+    super.onDestroyView();
+
+    ButterKnife.unbind(this);
+  }
+
   @Override public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
 
-    Picasso.with(getContext()).load(this.songEntity.getImageBig().replace("100x100", "500x500")).into(ivAvatar);
-    txtTrackName.setText(this.songEntity.getTrackName());
-    txtTrackArtistName.setText(this.songEntity.getArtistName());
-    tvGenreName.setText(this.songEntity.getGenre());
-    tvTrackPrice.setText(String.valueOf(this.songEntity.getTrackPrice()));
-  }
-
-  @Override public void onResume() {
-    super.onResume();
+    songShow(this.songEntity);
   }
 
   @Override public void onClick(View v) {
@@ -111,4 +101,18 @@ public class SongShowFragment extends Fragment implements View.OnClickListener {
         .build()
         .launchUrl(getActivity(), Uri.parse(url));
   }
+
+  public void songShow(SongEntity songEntity) {
+    if (songEntity != null) {
+      this.songEntity = songEntity;
+      scrollSongShow.setVisibility(View.VISIBLE);
+      Picasso.with(getContext()).load(this.songEntity.getImageBig().replace("100x100", "500x500")).into(ivAvatar);
+      txtTrackName.setText(this.songEntity.getTrackName());
+      txtTrackArtistName.setText(this.songEntity.getArtistName());
+      tvGenreName.setText(this.songEntity.getGenre());
+      tvTrackPrice.setText(String.valueOf(this.songEntity.getTrackPrice()));
+    }
+  }
+
+
 }

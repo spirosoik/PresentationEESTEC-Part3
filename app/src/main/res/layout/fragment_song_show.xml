@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollSongShow"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:visibility="invisible"
     >
 
   <!-- GridView -->
@@ -14,9 +16,7 @@
 
     <ImageView
         android:id="@+id/avatar"
-        android:layout_width="match_parent"
-        android:layout_height="185dip"
-        android:scaleType="centerCrop"
+        style="@style/AppTheme.Image.SongShow"
         />
 
 
@@ -29,38 +29,20 @@
 
       <TextView
           android:id="@+id/trackName"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center_horizontal"
           android:textSize="20sp"
-          android:textColor="@android:color/white"
-          android:gravity="center_vertical"
-          android:singleLine="true"
-          android:ellipsize="end"
+          style="@style/AppTheme.SongShowTitle"
           />
 
       <TextView
           android:id="@+id/trackArtistName"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center_horizontal"
-          android:textColor="@android:color/white"
           android:textSize="18sp"
-          android:gravity="center_vertical"
-          android:singleLine="true"
-          android:ellipsize="end"
+          style="@style/AppTheme.SongShowTitle"
           />
     </LinearLayout>
 
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        style="@style/AppTheme.SongShowInformationPanel"
         >
       <ImageView
           android:id="@+id/iconGenre"
@@ -70,12 +52,8 @@
           />
       <TextView
           android:id="@+id/tvGenreName"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
+          style="@style/AppTheme.SongShowInformationTitle"
           android:layout_toRightOf="@+id/iconGenre"
-          android:layout_marginLeft="5dp"
-          android:textSize="18sp"
-          android:textColor="@color/colorAccent"
           />
     </RelativeLayout>
 
@@ -87,13 +65,7 @@
         />
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        style="@style/AppTheme.SongShowInformationPanel"
         >
       <ImageView
           android:id="@+id/iconListen"
@@ -103,13 +75,9 @@
           />
       <TextView
           android:id="@+id/tvListenLink"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
+          style="@style/AppTheme.SongShowInformationTitle"
           android:layout_toRightOf="@+id/iconListen"
-          android:layout_marginLeft="5dp"
           android:text="@string/txt_radiostation_label"
-          android:textSize="18sp"
-          android:textColor="@color/colorAccent"
           />
     </RelativeLayout>
 
@@ -121,13 +89,7 @@
         />
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        style="@style/AppTheme.SongShowInformationPanel"
         >
       <ImageView
           android:id="@+id/iconArtistUrl"
@@ -137,13 +99,9 @@
           />
       <TextView
           android:id="@+id/tvLinkArtist"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
+          style="@style/AppTheme.SongShowInformationTitle"
           android:layout_toRightOf="@+id/iconArtistUrl"
-          android:layout_marginLeft="5dp"
           android:text="@string/txt_artisturl_label"
-          android:textSize="18sp"
-          android:textColor="@color/colorAccent"
           />
     </RelativeLayout>
 
@@ -154,13 +112,7 @@
         />
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:paddingBottom="20dp"
-        android:paddingTop="20dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        style="@style/AppTheme.SongShowInformationPanel"
         >
       <ImageView
           android:id="@+id/iconMoney"
@@ -170,12 +122,8 @@
           />
       <TextView
           android:id="@+id/tvTrackPrice"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
+          style="@style/AppTheme.SongShowInformationTitle"
           android:layout_toRightOf="@+id/iconMoney"
-          android:layout_marginLeft="5dp"
-          android:textColor="@color/colorAccent"
-          android:textSize="18sp"
           />
     </RelativeLayout>
 

@@ -8,7 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import com.eestecapp.R;
 import com.eestecapp.event.SongsListEvent;
 import com.eestecapp.model.SongEntity;
@@ -20,8 +23,11 @@ import com.squareup.otto.ThreadEnforcer;
 
 public class SongsFragment extends Fragment implements AdapterView.OnItemClickListener {
 
+  //UI
+  @Bind(R.id.lvSongs) GridView lvSongs;
+
+  //Config
   private SongsAdapter songsAdapter;
-  private ListView lvSongs;
   private SongsListener songsListener;
   private Bus bus = new Bus(ThreadEnforcer.MAIN);
 
@@ -49,7 +55,8 @@ public class SongsFragment extends Fragment implements AdapterView.OnItemClickLi
     // Inflate the layout for this fragment
     View fragmentView = inflater.inflate(R.layout.fragment_songs, container, false);
 
-    lvSongs = (ListView) fragmentView.findViewById(R.id.lvSongs);
+    ButterKnife.bind(this, fragmentView);
+
     lvSongs.setOnItemClickListener(this);
     songsAdapter = new SongsAdapter(getActivity(), new SongEntity[]{});
     this.lvSongs.setAdapter(songsAdapter);
@@ -76,6 +83,12 @@ public class SongsFragment extends Fragment implements AdapterView.OnItemClickLi
   public void onStop() {
     super.onStop();
     bus.unregister(this);
+  }
+
+  @Override public void onDestroyView() {
+    super.onDestroyView();
+
+    ButterKnife.unbind(this);
   }
 
   // Inside Fragment or Activity or wherever you need that
