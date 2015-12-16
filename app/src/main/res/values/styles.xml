@@ -14,4 +14,50 @@
     <item name="windowNoTitle">true</item>
   </style>
 
+  <style name="AppTheme.GridView">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:numColumns">@integer/tv_shows_grid_view_num_colums</item>
+    <item name="android:verticalSpacing">@dimen/main_margin</item>
+    <item name="android:horizontalSpacing">@dimen/main_margin</item>
+  </style>
+
+  <style name="AppTheme.Image">
+    <item name="android:scaleType">centerCrop</item>
+    <item name="android:background">@color/colorPrimary</item>
+  </style>
+
+  <style name="AppTheme.Image.SongShow">
+    <item name="android:layout_width">fill_parent</item>
+    <item name="android:layout_height">@dimen/fan_art_height</item>
+  </style>
+
+  <style name="AppTheme.SongShowTitle">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_gravity">center_horizontal</item>
+    <item name="android:textColor">@android:color/white</item>
+    <item name="android:gravity">center_vertical</item>
+    <item name="android:singleLine">true</item>
+    <item name="android:ellipsize">end</item>
+  </style>
+
+  <style name="AppTheme.SongShowInformationPanel">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_marginTop">10dp</item>
+    <item name="android:paddingBottom">20dp</item>
+    <item name="android:paddingTop">20dp</item>
+    <item name="android:paddingLeft">10dp</item>
+    <item name="android:paddingRight">10dp</item>"
+  </style>
+
+  <style name="AppTheme.SongShowInformationTitle">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">18sp</item>
+    <item name="android:textColor">@color/colorAccent</item>
+    <item name="android:layout_marginLeft">5dp</item>
+  </style>
+
 </resources>

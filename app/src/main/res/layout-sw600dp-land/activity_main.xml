@@ -18,4 +18,14 @@
       class="com.eestecapp.ui.songslist.SongsFragment"
       tools:context=".ui.songslist.SongsActivity"/>
 
+  <!-- SongShowFragment -->
+
+  <fragment
+      android:id="@+id/fragmentSongView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      class="com.eestecapp.ui.songshow.SongShowFragment"
+      tools:context=".ui.songshow.SongShowActivity"/>
+
 </LinearLayout>

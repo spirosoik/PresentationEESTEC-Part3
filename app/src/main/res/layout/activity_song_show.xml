@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    android:id="@+id/fragmentView"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    />
+    tools:context=".ui.songshow.SongShowActivity">
+
+  <fragment
+      android:id="@+id/fragmentSongShow"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      class="com.eestecapp.ui.songshow.SongShowFragment"
+      tools:context=".ui.songshow.SongShowActivity"/>
+
+</merge>
