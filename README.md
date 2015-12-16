@@ -12,5 +12,7 @@ The application is a simple client of iTunes REST API.
 - How to use [Retrofit 1.9.0](http://square.github.io/retrofit/) for REST API
 - How to use [Otto 1.3.8](http://square.github.io/otto/) for event programming
 - How to use [Picasso 2.5.2](http://square.github.io/picasso/) to download and show images
+- How to use [Butterknife 7.0.1](http://jakewharton.github.io/butterknife/) to avoid the multiple boilerplate code ```findViewById()```
+- How to support different screen sizes and densities with resources and qualifiers
 
  
